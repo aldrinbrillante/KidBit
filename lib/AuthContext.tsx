@@ -1,3 +1,4 @@
+// ✅ Minor change to trigger GitHub contribution square
 // src/lib/AuthContext.tsx
 "use client";
 
