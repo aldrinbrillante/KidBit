@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useAuth } from "@/lib/AuthContext";
 
 export default function Home() {
   return (
