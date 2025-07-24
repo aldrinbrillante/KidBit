@@ -22,15 +22,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@lib/*": ["lib/*"],
-      "@components/*": ["src/components/*"],
       "@app/*": ["src/app/*"],
+      "@components/*": ["src/components/*"],
+      "@lib/*": ["lib/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@context/*": ["src/context/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

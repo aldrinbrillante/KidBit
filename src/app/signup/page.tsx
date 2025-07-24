@@ -1,7 +1,5 @@
-// Signup page for KidBit platform.
-// Provides email/password registration using Firebase via AuthContext.
-
-"use client";
+// src/app/signup/page.tsx
+'use client';
 
 import { useState } from "react";
 import { useAuth } from "../../../lib/AuthContext";
@@ -29,7 +27,7 @@ export default function SignupPage() {
     setLoading(true);
     try {
       await signup(email, password);
-      router.push("/dashboard"); // ✅ Redirect after signup
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Signup failed");
     } finally {

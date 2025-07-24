@@ -1,9 +1,14 @@
-// ✅ Minor change to trigger GitHub contribution square
-// src/lib/AuthContext.tsx
+// lib/AuthContext.tsx
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User } from "firebase/auth";
+import { 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut, 
+  User 
+} from "firebase/auth";
 import { auth } from "./firebase";
 
 interface AuthContextProps {
@@ -21,22 +26,31 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      console.warn("❌ Firebase auth not initialized in useEffect");
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 
   const login = async (email: string, password: string) => {
+    if (!auth) throw new Error("Firebase auth not initialized.");
     await signInWithEmailAndPassword(auth, email, password);
   };
 
   const signup = async (email: string, password: string) => {
+    if (!auth) throw new Error("Firebase auth not initialized.");
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logout = async () => {
+    if (!auth) throw new Error("Firebase auth not initialized.");
     await signOut(auth);
   };
 
@@ -53,4 +67,4 @@ export const useAuth = () => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-}
+};
